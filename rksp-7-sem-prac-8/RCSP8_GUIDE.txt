@@ -1,0 +1,44 @@
+docker build -t matrosovcmtn/delivery-service:latest .\services\delivery-service
+docker build -t matrosovcmtn/user-service:latest .\services\user-service
+docker build -t matrosovcmtn/pizza-service:latest .\services\pizza-service
+docker build -t matrosovcmtn/api-gateway:latest .\services\api-gateway
+docker build -t matrosovcmtn/config-server:latest .\services\config-server
+docker build -t matrosovcmtn/load-balancer:latest .\services\load-balancer
+docker build -t matrosovcmtn/service-discovery:latest .\services\service-discovery
+docker push matrosovcmtn/delivery-service:latest
+docker push matrosovcmtn/user-service:latest
+docker push matrosovcmtn/pizza-service:latest
+docker push matrosovcmtn/api-gateway:latest
+docker push matrosovcmtn/config-server:latest
+docker push matrosovcmtn/load-balancer:latest
+docker push matrosovcmtn/service-discovery:latest
+
+-----------------------
+minikube start --memory=3600
+
+kubectl apply -f service-discovery-deployment.yaml
+kubectl apply -f service-discovery-service.yaml
+kubectl apply -f config-server-deployment.yaml
+kubectl apply -f config-server-service.yaml
+kubectl apply -f postgres-db1-deployment.yaml
+kubectl apply -f postgres-db1-service.yaml
+kubectl apply -f postgres-db2-deployment.yaml
+kubectl apply -f postgres-db2-service.yaml
+kubectl apply -f postgres-db3-deployment.yaml
+kubectl apply -f postgres-db3-service.yaml
+kubectl apply -f pizza-service-deployment.yaml
+kubectl apply -f pizza-service-service.yaml
+kubectl apply -f delivery-service-deployment.yaml
+kubectl apply -f delivery-service-service.yaml
+kubectl apply -f user-service-deployment.yaml
+kubectl apply -f user-service-service.yaml
+kubectl apply -f load-balancer-deployment.yaml
+kubectl apply -f load-balancer-service.yaml
+kubectl apply -f api-gateway-deployment.yaml
+kubectl apply -f api-gateway-service.yaml
+
+kubectl apply -f ./deployment
+
+-----------------------
+
+kubectl port-forward service/api-gateway 80:80

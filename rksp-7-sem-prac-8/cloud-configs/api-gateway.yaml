@@ -1,0 +1,30 @@
+server.port: 80
+
+spring.cloud.gateway.routes:
+  - id: delivery-service
+    uri: http://load-balancer:9000
+    predicates:
+      - Path=/api/delivery/**
+  - id: user-service
+    uri: http://user-service:8080
+    predicates:
+      - Path=/api/users/**
+  - id: pizza-service
+    uri: http://pizza-service:8081
+    predicates:
+      - Path=/api/pizza/**
+
+spring.security.oauth2.client:
+  registration.github:
+    client-id: Ov23lizIb2VKNg5M7kW7
+    client-secret: b23bc5f65cb7b2b392b664a5a59455f2452296c4
+    authorization-grant-type: authorization_code
+    redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+    scope: read:user,user:email
+  provider.github:
+    authorization-uri: https://github.com/login/oauth/authorize
+    token-uri: https://github.com/login/oauth/access_token
+    user-info-uri: https://api.github.com/user
+    user-name-attribute: login
+
+eureka.client.service-url.defaultZone: http://service-discovery:8761/eureka/

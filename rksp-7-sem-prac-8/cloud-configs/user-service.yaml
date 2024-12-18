@@ -1,0 +1,12 @@
+server.port: 8080
+eureka.client.service-url.defaultZone: http://service-discovery:8761/eureka/
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres-db1:5432/db1
+    username: postgres
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+delivery.service.url: http://delivery-service:8082

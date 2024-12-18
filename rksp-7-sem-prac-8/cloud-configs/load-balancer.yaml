@@ -1,0 +1,10 @@
+server.port: 9000
+
+spring.cloud.loadbalancer.clients:
+  delivery-service:
+    instances:
+      - uri: http://delivery-service:8082
+
+eureka.client.service-url.defaultZone: http://service-discovery:8761/eureka/
+
+delivery.service.url: http://delivery-service:8082

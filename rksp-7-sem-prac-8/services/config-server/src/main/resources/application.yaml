@@ -1,0 +1,20 @@
+server.port: 8888
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      enabled: false
+    config.server.git:
+      search-paths:
+        - cloud-configs
+      clone-on-start: true
+      default-label: main
+      uri: https://github.com/matrosovcmtn/rksp-8.git
+      ignore-local-ssh-settings: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://service-discovery:8761/eureka/
+
