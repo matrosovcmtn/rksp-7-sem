@@ -11,6 +11,7 @@ import reactor.core.publisher.Flux;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
+// Matrosov Danil IKBO-01-21
 @SpringBootApplication
 public class ClientApplication implements CommandLineRunner {
 

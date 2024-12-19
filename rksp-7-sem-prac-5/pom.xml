@@ -14,7 +14,7 @@
     <name>rksp-7-sem-5-prac</name>
     <description>rksp-7-sem-5-prac</description>
     <properties>
-        <java.version>23</java.version>
+        <java.version>21</java.version>
     </properties>
     <dependencies>
         <dependency>
